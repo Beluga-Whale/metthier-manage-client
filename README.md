@@ -30,12 +30,12 @@ cd [frontend-folder-name]
 npm install
 ```
 
-# .env.local (Frontend)
+#### 3. .env.local (Frontend)
 
-# 💡 API URL: ต้องชี้ไปที่ Port และ Path ที่ Backend Server รันอยู่
+#### 💡 API URL: ต้องชี้ไปที่ Port และ Path ที่ Backend Server รันอยู่
 
 NEXT_PUBLIC_PORT=http://localhost:8000
 
-# 3. รัน Frontend
+#### 4. รัน Frontend
 
 npm run dev
