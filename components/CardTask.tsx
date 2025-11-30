@@ -1,59 +1,49 @@
 // import { TaskDto } from "@/types";
-import { Task } from "@/typesDTO/taskDTO";
+import { Task, TaskStatus } from "@/typesDTO/taskDTO";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { SquarePen } from "lucide-react";
 import { Trash2 } from "lucide-react";
 import { useDialogStore } from "@/app/stores/useDialogStore";
-// import { useAppDispatch } from "@/app/lib/hook";
-// import {
-//   setDialogEdit,
-//   setDialogEditTask,
-// } from "@/app/lib/feature/dialog/dialogSlice";
-// import Swal from "sweetalert2";
-// import { useDeleteTask } from "@/services/taskServices";
-// เปิดใช้งาน plugin
+
+import Swal from "sweetalert2";
+import { useDeleteTask } from "@/services/taskServices";
 dayjs.extend(relativeTime);
 type CardTaskProps = {
   task: Task;
 };
 
 const CardTask = ({ task }: CardTaskProps) => {
-  //   const dispatch = useAppDispatch();
-  const { toggleEdit, taskDetail, setToggleEdit, setTaskDetail, reset } =
-    useDialogStore();
-  //   const { mutateAsync: deleteMutation } = useDeleteTask();
+  const { setToggleEdit, setTaskDetail } = useDialogStore();
+  const { mutateAsync: deleteMutation } = useDeleteTask();
 
-  //   const priorityColor =
-  //     task?.Priority == "low"
-  //       ? "text-green-400"
-  //       : task?.Priority == "medium"
-  //       ? "text-yellow-400"
-  //       : task?.Priority == "high"
-  //       ? "text-red-500"
-  //       : "text-black";
-
+  const statusConfig = {
+    TO_DO: { label: "To Do", color: "text-slate-500 bg-slate-100" },
+    IN_PROGRESS: { label: "In Progress", color: "text-blue-600 bg-blue-100" },
+    DONE: { label: "Completed", color: "text-green-600 bg-green-100" },
+  };
+  const { label, color } = statusConfig[task.status];
   const handleDelete = () => {
-    // Swal.fire({
-    //   title: `Delete ${task?.Title} `,
-    //   text: "",
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes, delete it!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     deleteMutation(task?.ID ?? 0).then(() => {
-    //       Swal.fire({
-    //         title: "Deleted!",
-    //         text: "Your Task has been deleted.",
-    //         icon: "success",
-    //       });
-    //     });
-    //   }
-    // });
+    Swal.fire({
+      title: `Delete ${task?.title} `,
+      text: "",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteMutation(task?.id ?? 0).then(() => {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your Task has been deleted.",
+            icon: "success",
+          });
+        });
+      }
+    });
   };
 
   return (
@@ -66,6 +56,11 @@ const CardTask = ({ task }: CardTaskProps) => {
           <p>{task?.description}</p>
           <div className="flex items-center justify-between">
             <p className="text-sm">{dayjs(task?.createdAt).fromNow()}</p>
+            <span
+              className={`${color} text-xs px-2 py-1 rounded-full font-medium`}
+            >
+              {label}
+            </span>
             <div className="flex items-center gap-2 ">
               <SquarePen
                 className="text-yellow-300 cursor-pointer "

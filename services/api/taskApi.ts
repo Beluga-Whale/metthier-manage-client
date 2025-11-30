@@ -24,3 +24,14 @@ export const updateTask = async (id: number, body: UpdateTaskDto) => {
     throw error;
   }
 };
+
+export const deleteTask = async (id: number) => {
+  try {
+    const result = await axios.delete(`${apiUrl}/tasks/${id}`, {
+      withCredentials: true,
+    });
+    return result?.data;
+  } catch (error) {
+    throw error;
+  }
+};
