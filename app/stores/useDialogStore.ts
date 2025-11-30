@@ -1,18 +1,21 @@
 // stores/useCounterStore.ts
-import { Task } from "@/typesDTO/taskDTO";
+import { Task, TaskStatus } from "@/typesDTO/taskDTO";
 import { create } from "zustand";
 
 interface DialogState {
   toggleEdit: boolean;
   taskDetail: Task | undefined;
+  statusTask: TaskStatus | null;
   setToggleEdit: (open: boolean) => void;
   setTaskDetail: (task: Task) => void;
+  setStatusTask: (status: TaskStatus | null) => void;
   reset: () => void;
 }
 
 export const useDialogStore = create<DialogState>((set) => ({
   toggleEdit: false,
   taskDetail: undefined,
+  statusTask: TaskStatus.TO_DO,
   setToggleEdit: (open: boolean) =>
     set(() => ({
       toggleEdit: open,
@@ -21,5 +24,6 @@ export const useDialogStore = create<DialogState>((set) => ({
     set(() => ({
       taskDetail: task,
     })),
+  setStatusTask: (status) => set({ statusTask: status }),
   reset: () => set({ toggleEdit: false, taskDetail: undefined }),
 }));

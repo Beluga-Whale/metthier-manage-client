@@ -31,8 +31,7 @@ const formSchema = z.object({
 });
 
 const DialogEditTask = () => {
-  const { toggleEdit, taskDetail, setToggleEdit, setTaskDetail, reset } =
-    useDialogStore();
+  const { toggleEdit, taskDetail, setToggleEdit, reset } = useDialogStore();
 
   const { mutateAsync: mutateUpdateTask } = useUpdateTask();
 
