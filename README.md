@@ -34,7 +34,7 @@ npm install
 
 # 💡 API URL: ต้องชี้ไปที่ Port และ Path ที่ Backend Server รันอยู่
 
-NEXT_PUBLIC_API_BASE_URL="http://localhost:8000/tasks"
+NEXT_PUBLIC_PORT=http://localhost:8000
 
 # 3. รัน Frontend
 
