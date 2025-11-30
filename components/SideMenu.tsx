@@ -22,21 +22,21 @@ const SideMenu = () => {
       path: "/tasks",
       icon: <LayoutGrid className={activeColor("/tasks")} />,
     },
-    {
-      title: "Completed",
-      path: "/tasks/completed",
-      icon: <FileCheck className={activeColor("/tasks/completed")} />,
-    },
-    {
-      title: "Pending",
-      path: "/tasks/pending",
-      icon: <Timer className={activeColor("/tasks/pending")} />,
-    },
-    {
-      title: "Overdue",
-      path: "/tasks/overdue",
-      icon: <TimerOff className={activeColor("/tasks/overdue")} />,
-    },
+    // {
+    //   title: "Completed",
+    //   path: "/tasks/completed",
+    //   icon: <FileCheck className={activeColor("/tasks/completed")} />,
+    // },
+    // {
+    //   title: "Pending",
+    //   path: "/tasks/pending",
+    //   icon: <Timer className={activeColor("/tasks/pending")} />,
+    // },
+    // {
+    //   title: "Overdue",
+    //   path: "/tasks/overdue",
+    //   icon: <TimerOff className={activeColor("/tasks/overdue")} />,
+    // },
   ];
   return (
     <div className="flex flex-col items-center  gap-10 p-4  ">

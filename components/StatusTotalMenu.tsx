@@ -6,12 +6,13 @@ const StatusTotalMenu = () => {
   const { data: taskData, isLoading, isError } = useGetAllTasks();
 
   const taskAll = taskData?.length;
-  const taskNotComplete = taskData?.filter(
-    (item) => item.status !== TaskStatus.DONE
+  const taskInprogress = taskData?.filter(
+    (item) => item.status == TaskStatus.IN_PROGRESS
   );
   const taskComplete = taskData?.filter(
     (item) => item.status == TaskStatus.DONE
   );
+  const taskTodo = taskData?.filter((item) => item.status == TaskStatus.TO_DO);
   const title = [
     {
       title: "Total Tasks",
@@ -20,12 +21,12 @@ const StatusTotalMenu = () => {
     },
     {
       title: "In Progress",
-      count: taskNotComplete?.length,
+      count: taskInprogress?.length,
       color: "text-blue-400",
     },
     {
-      title: "Open Tasks",
-      count: taskNotComplete?.length,
+      title: "To Do Tasks",
+      count: taskTodo?.length,
       color: "text-green-400",
     },
     {

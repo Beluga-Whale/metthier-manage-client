@@ -2,14 +2,17 @@ import {
   CreateTaskDto,
   Task,
   TaskResponseDto,
+  TaskStatus,
   UpdateTaskDto,
 } from "@/typesDTO/taskDTO";
 import axios from "axios";
 const apiUrl: string = process.env.NEXT_PUBLIC_PORT || "";
 
-export const getAllTasks = async (): Promise<TaskResponseDto[]> => {
+export const getAllTasks = async (
+  status?: TaskStatus
+): Promise<TaskResponseDto[]> => {
   try {
-    const result = await axios.get(`${apiUrl}/tasks`, {
+    const result = await axios.get(`${apiUrl}/tasks?status=${status ?? ""}`, {
       withCredentials: true,
     });
 

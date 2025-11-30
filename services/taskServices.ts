@@ -1,13 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { createTask, deleteTask, getAllTasks, updateTask } from "./api/taskApi";
-import { UpdateTaskDto } from "@/typesDTO/taskDTO";
+import { TaskStatus, UpdateTaskDto } from "@/typesDTO/taskDTO";
 
 export const getTasksQueryKey = "getTasksQueryKey";
 
-export const useGetAllTasks = () => {
+export const useGetAllTasks = (status?: TaskStatus) => {
   return useQuery({
-    queryKey: [getTasksQueryKey],
-    queryFn: () => getAllTasks(),
+    queryKey: [getTasksQueryKey, status],
+    queryFn: () => getAllTasks(status),
   });
 };
 

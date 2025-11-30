@@ -5,17 +5,17 @@ import { create } from "zustand";
 interface DialogState {
   toggleEdit: boolean;
   taskDetail: Task | undefined;
-  statusTask: TaskStatus | null;
+  statusTask: TaskStatus | undefined;
   setToggleEdit: (open: boolean) => void;
   setTaskDetail: (task: Task) => void;
-  setStatusTask: (status: TaskStatus | null) => void;
+  setStatusTask: (status: TaskStatus | undefined) => void;
   reset: () => void;
 }
 
 export const useDialogStore = create<DialogState>((set) => ({
   toggleEdit: false,
   taskDetail: undefined,
-  statusTask: TaskStatus.TO_DO,
+  statusTask: undefined,
   setToggleEdit: (open: boolean) =>
     set(() => ({
       toggleEdit: open,
