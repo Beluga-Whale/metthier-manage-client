@@ -8,6 +8,7 @@ import {
 } from "./ui/tooltip";
 import Link from "next/link";
 import { FileCheck, LayoutGrid, Timer, TimerOff } from "lucide-react";
+import DialogCreateTask from "./DialogCreateTask";
 
 const SideMenu = () => {
   const pathname = usePathname();
@@ -53,6 +54,7 @@ const SideMenu = () => {
           </Tooltip>
         </TooltipProvider>
       ))}
+      <DialogCreateTask btn={true} />
     </div>
   );
 };

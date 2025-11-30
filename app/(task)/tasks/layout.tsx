@@ -1,3 +1,4 @@
+import InfoTask from "@/components/InfoTask";
 import SideMenu from "@/components/SideMenu";
 
 export default function Layout({
@@ -8,7 +9,7 @@ export default function Layout({
       <main className="flex justify-between min-h-screen">
         <SideMenu />
         {children}
-        {/* <InfoTask /> */}
+        <InfoTask />
       </main>
     </main>
   );

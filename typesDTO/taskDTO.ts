@@ -20,6 +20,7 @@ export interface Task {
 export interface CreateTaskDto {
   title: string;
   description?: string;
+  status: TaskStatus;
 }
 
 // NOTE -Update DTO

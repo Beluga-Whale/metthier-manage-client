@@ -1,4 +1,9 @@
-import { Task, TaskResponseDto, UpdateTaskDto } from "@/typesDTO/taskDTO";
+import {
+  CreateTaskDto,
+  Task,
+  TaskResponseDto,
+  UpdateTaskDto,
+} from "@/typesDTO/taskDTO";
 import axios from "axios";
 const apiUrl: string = process.env.NEXT_PUBLIC_PORT || "";
 
@@ -9,6 +14,17 @@ export const getAllTasks = async (): Promise<TaskResponseDto[]> => {
     });
 
     return result?.data?.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createTask = async (body: CreateTaskDto) => {
+  try {
+    const result = await axios.post(`${apiUrl}/tasks`, body, {
+      withCredentials: true,
+    });
+    return result?.data;
   } catch (error) {
     throw error;
   }

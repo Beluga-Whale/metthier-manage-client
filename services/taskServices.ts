@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deleteTask, getAllTasks, updateTask } from "./api/taskApi";
+import { createTask, deleteTask, getAllTasks, updateTask } from "./api/taskApi";
 import { UpdateTaskDto } from "@/typesDTO/taskDTO";
 
 export const getTasksQueryKey = "getTasksQueryKey";
@@ -8,6 +8,19 @@ export const useGetAllTasks = () => {
   return useQuery({
     queryKey: [getTasksQueryKey],
     queryFn: () => getAllTasks(),
+  });
+};
+
+export const useCreateTask = () => {
+  const queryClient = useQueryClient(); // ใช้ queryClient
+  return useMutation({
+    mutationFn: createTask,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [getTasksQueryKey] });
+    },
+    onError: (error: Error) => {
+      console.error("Create Task Failed:", error.message);
+    },
   });
 };
 
